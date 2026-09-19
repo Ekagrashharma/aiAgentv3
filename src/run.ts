@@ -25,4 +25,8 @@ async function main() {
 
 main().catch(console.error);
 
+<<<<<<< HEAD
 
+=======
+// make a tool and make it dynamic
+>>>>>>> 5406552 (free)
