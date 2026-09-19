@@ -1,15 +1,28 @@
-import "dotenv/config"
-import { google } from "@google/genai"
+
+import "dotenv/config";
+
+import { generateText, stepCountIs } from "ai";
+import { google } from "@ai-sdk/google";
+
+import { weatherTool } from "./tools/weatherTool.js";
 
 
-const apikey = process.env.GEMINI_API_KEY;
+async function main() {
+  const result = await generateText({
+    model: google("gemini-3-flash-preview"),
 
-if(!apikey){
-    throw new Error("gemini api key is not found")
+    prompt: "What's the weather in Delhi?",
+
+    tools: {
+      getWeather: weatherTool,
+    },
+
+    stopWhen: stepCountIs(2),
+  });
+
+  console.log(result.text);
 }
 
-const ai = new google({
-    apikey
-});
+main().catch(console.error);
 
-getweather("bareilly")
+
