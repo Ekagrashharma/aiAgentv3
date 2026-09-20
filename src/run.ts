@@ -1,29 +1,29 @@
 
 import "dotenv/config";
 
-import { generateText, stepCountIs } from "ai";
+import { generateText, stepCountIs, tool } from "ai";
 import { google } from "@ai-sdk/google";
+import { tools } from "./tools/index.js"
 
-import { weatherTool } from "./tools/weatherTool.js";
+// TODO : make the agent limitation for tools
 
 
-async function main() {
-  const result = await generateText({
+
+async function main(
+  userMessage: string
+) {
+
+  const {text} = await generateText({
     model: google("gemini-3-flash-preview"),
-
-    prompt: "What's the weather in Delhi?",
-
-    tools: {
-      getWeather: weatherTool,
-    },
-
+    prompt: userMessage,
     stopWhen: stepCountIs(2),
+    tools
   });
 
-  console.log(result.text);
+  console.log(text);
 }
+main("current date ")
 
-main().catch(console.error);
 
 <<<<<<< HEAD
 
