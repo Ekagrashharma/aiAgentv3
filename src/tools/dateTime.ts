@@ -7,5 +7,4 @@ export const getDateTime = tool({
   execute: async () => {
     return new Date().toISOString();
   },
-  
 });
