@@ -1,24 +1,38 @@
 
 import "dotenv/config";
-
-import { generateText, stepCountIs} from "ai";
+import * as readline from "node:readline/promises";
+import { generateText, ModelMessage, streamText} from "ai";
 import { google } from "@ai-sdk/google";
 import { tools } from "./tools/index.js"
+import { error } from "node:console";
 
 // TODO : make the agent limitation for tools
 
+const messages: ModelMessage[] = [];
 
+const terminal = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-async function main(
-  userMessage: string
-) {
+async function main() {
+  while(true){
+    const userInput = await terminal.question("You: ");
+    if (userInput.trim().toLowerCase() === "exit") break;
 
-  const {text} = await generateText({
-    model: google("gemini-3-flash-preview"),
-    prompt: userMessage,
-    tools
-  });
+    messages.push({ role: "user", content: userInput });
 
-  console.log(text);
-}
-main("hello , give me the bareilly weather  ")
+    // console.log(messages.length)
+    const result = await generateText({
+        model: google("gemini-3-flash-preview"),
+        prompt: messages,
+        tools
+        });
+        
+        console.log("Agent:", result.text);
+        
+        messages.push(...result.responseMessages)
+      }
+      terminal.close()
+    }
+main().catch(console.error)
