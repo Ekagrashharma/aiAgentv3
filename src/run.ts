@@ -1,7 +1,7 @@
 
 import "dotenv/config";
 import * as readline from "node:readline/promises";
-import { generateText, ModelMessage, streamText} from "ai";
+import { generateText, ModelMessage, ToolSet } from "ai";
 import { google } from "@ai-sdk/google";
 import { tools } from "./tools/index.js"
 import { error } from "node:console";
@@ -22,11 +22,11 @@ async function main() {
 
     messages.push({ role: "user", content: userInput });
 
-    // console.log(messages.length)
+    console.log(messages.length)
     const result = await generateText({
         model: google("gemini-3-flash-preview"),
         prompt: messages,
-        tools
+        tools,
         });
         
         console.log("Agent:", result.text);
