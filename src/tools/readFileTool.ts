@@ -13,6 +13,7 @@ export const readFileTool = tool({
         try {
             const content = await fs.readFile(filePath , "utf-8")
             return content;
+            
         } catch (error) {
             const err = error as NodeJS.ErrnoException
             if( err.code == "ENOENT" ){

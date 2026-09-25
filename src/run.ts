@@ -1,10 +1,9 @@
 
 import "dotenv/config";
 import * as readline from "node:readline/promises";
-import { generateText, ModelMessage, ToolSet } from "ai";
+import { generateText, ModelMessage, stepCountIs} from "ai";
 import { google } from "@ai-sdk/google";
 import { tools } from "./tools/index.js"
-import { error } from "node:console";
 
 // TODO : make the agent limitation for tools
 
@@ -27,6 +26,7 @@ async function main() {
         model: google("gemini-3-flash-preview"),
         prompt: messages,
         tools,
+        stopWhen: stepCountIs(5),
         });
         
         console.log("Agent:", result.text);
