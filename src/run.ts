@@ -29,7 +29,7 @@ async function main() {
         stopWhen: stepCountIs(5),
         });
         
-        console.log("Agent:", result.text);
+        // console.log("Agent:", result.text);
         
         messages.push(...result.responseMessages)
       }
