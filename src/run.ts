@@ -14,7 +14,7 @@ const terminal = readline.createInterface({
   output: process.stdout,
 });
 
-async function main() {
+export async function main() {
   while(true){
     const userInput = await terminal.question("You: ");
     if (userInput.trim().toLowerCase() === "exit") break;
