@@ -58,6 +58,6 @@
 
     "types": ["node"]
   },
-  "include": ["src/**/*", "scripts"],
+  "include": ["src/**/*", "scripts", "evals"],
   "exclude": ["node_modules", "dist"]
 }
