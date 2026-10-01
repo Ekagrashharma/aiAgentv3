@@ -4,7 +4,7 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "dev": "tsx src/run.ts",
+    "dev": "tsx src/runAgent.ts",
     "build": "tsc",
     "start": "node dist/run.js"
   },
