@@ -1,13 +1,13 @@
 import "dotenv/config";
 import * as readline from "node:readline/promises";
-import { fileURLToPath } from "node:url";
-import { generateText, ModelMessage, stepCountIs } from "ai";
+import { generateText, ModelMessage, stepCountIs} from "ai";
 import { google } from "@ai-sdk/google";
 import { Laminar } from "@lmnr-ai/lmnr";
 
 Laminar.initialize({
   projectApiKey: process.env.LMNR_API_KEY,
 });
+console.log(process.env.LMNR_API_KEY )
 
 export async function runAgent(prompt: string, history: ModelMessage[] = []) {
   const messages: ModelMessage[] = [...history, { role: "user", content: prompt }];
@@ -32,6 +32,7 @@ async function main() {
     input: process.stdin,
     output: process.stdout,
   });
+  console.log("working")
 
   let messages: ModelMessage[] = [];
 
@@ -39,7 +40,7 @@ async function main() {
     const userInput = await terminal.question("You: ");
     if (userInput.trim().toLowerCase() === "exit") break;
 
-    console.log(messages.length);
+    // console.log(messages.length);
     const result = await runAgent(userInput, messages);
     console.log("Agent:", result.text);
     messages = result.messages;

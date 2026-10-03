@@ -1,5 +1,5 @@
 import { evaluate } from "@lmnr-ai/lmnr"
-import { runAgent } from "../src/runAgent.js" 
+import { runAgent } from "../src/agents/runAgent.js" 
 
 evaluate({
   data: [

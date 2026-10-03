@@ -1,4 +1,22 @@
-// {
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    "types": ["node"]
+  },
+  "include": ["src/**/*", "scripts", "evals"],
+  "exclude": ["node_modules", "dist"]
+}
+
 //   // Visit https://aka.ms/tsconfig to read more about this file
 //   "compilerOptions": {
 //     // File Layout
@@ -43,21 +61,3 @@
 //   },
 //   "include": ["src"]
 // }
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-
-    "rootDir": "./src",
-    "outDir": "./dist",
-
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-
-    "types": ["node"]
-  },
-  "include": ["src/**/*", "scripts", "evals"],
-  "exclude": ["node_modules", "dist"]
-}

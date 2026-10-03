@@ -1,4 +1,4 @@
-import { tools } from './tools/index.js'
+import { tools } from '../tools/index.js'
 
 async function executeTool(
   name: string,
